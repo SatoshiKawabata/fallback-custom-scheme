@@ -3,23 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <title>Demo</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="../build/bundle.js"></script>
+  <style media="screen">
+    body {
+      padding: 16px;
+    }
+
+    #log {
+      font-size: 24px;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-<h1>this is demo page</h1>
+<h1>FallbackCustomScheme demo</h1>
+<form>
+  <div class="form-group" id="form">
+    <label for="urlScheme">urlScheme</label>
+    <input class="form-control" id="urlScheme" placeholder="urlScheme">
+  </div>
+  <div class="form-group">
+    <label for="fallback">fallback</label>
+    <input class="form-control" id="fallback" placeholder="fallback">
+  </div>
+  <div class="form-group">
+    <label for="browserback">browserback</label>
+    <input class="form-control" id="browserback" placeholder="browserback">
+  </div>
+  <button class="btn btn-default" id="launch">Launch</button>
+</form>
+<div id="log">
+
+</div>
 <script>
-  var fcs = new window.FallbackCustomScheme({
-    urlScheme: '',
-    fallback:'',
-    browserback: 'back',
-    onFallback: function() {
-      console.log('fallback');
-    },
-    onBrowserback: function() {
-      console.log('browserback');
+  $('#launch').on('click', function(e) {
+    e.preventDefault();
+    var urlScheme = $('#urlScheme')[0].value;
+    var fallback = $('#fallback')[0].value;
+    var browserback = $('#browserback')[0].value;
+    if (!urlScheme) {
+      $('#log').text('you must set "urlScheme"');
+      return;
     }
+    var fcs = new window.FallbackCustomScheme({
+      urlScheme: urlScheme,
+      fallback: fallback,
+      browserback: browserback,
+      onFallback: function() {
+        $('#log').text('fallback: ' + fallback);
+      },
+      onBrowserback: function() {
+        $('#log').text('browserback: ' + fallback);
+      }
+    });
+    fcs.launch();
   });
-  fcs.launch();
 </script>
 </body>
 </html>
