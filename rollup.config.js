@@ -4,7 +4,7 @@ import npm from 'rollup-plugin-node-resolve';
 
 export default {
   entry: 'src/index.js',
-  dest: 'build/bundle.js',
+  dest: 'bundle.js',
   format: 'umd',
   moduleName: 'FallbackCustomScheme',
   plugins: [
