@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+  <script src="../build/bundle.js"></script>
+</head>
+<body>
+<h1>this is demo page</h1>
+<script>
+  var fcs = new window.FallbackCustomScheme({
+    urlScheme: '',
+    fallback:'',
+    browserback: 'back',
+    onFallback: function() {
+      console.log('fallback');
+    },
+    onBrowserback: function() {
+      console.log('browserback');
+    }
+  });
+  fcs.launch();
+</script>
+</body>
+</html>
