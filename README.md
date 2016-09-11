@@ -21,6 +21,10 @@ var fcs = new window.FallbackCustomScheme({
   fallback: 'itunes://hoge', // if not installed the applicaiton, handling (ex. app store, google play store etc)
   onFallback: function(){}, // fallback handler
   browserback: 'back', // handling on return browser
-  onBrowserback: function(){} // browser back handler
+  onBrowserback: function(){}, // browser back handler
+  query: { // query
+    a:aaa,
+    b=bbb
+  }
 });
 ```
