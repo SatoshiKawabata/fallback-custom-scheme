@@ -1,6 +1,8 @@
+import queryString from 'query-string';
+
 class Context {
 
-  urlScheme = null;
+  _urlScheme = null;
   query = null;
   fallback = null;
   onFallback = null;
@@ -11,8 +13,21 @@ class Context {
     context && this.extend(context);
   }
 
+  get urlScheme() {
+    const { query, _urlScheme } = this;
+    let fullPath = _urlScheme;
+    if (query) {
+      const queryStr = queryString.stringify(query);
+      const parsed = new URL(fullPath);
+      parsed.search += (parsed.search ? '&' : '?') + queryStr;
+      fullPath = parsed.href;
+    }
+
+    return fullPath;
+  }
+
   extend(target) {
-    target.urlScheme && (this.urlScheme = target.urlScheme);
+    target.urlScheme && (this._urlScheme = target.urlScheme);
     target.query && (this.query = target.query);
     target.fallback && (this.fallback = target.fallback);
     target.onFallback && (this.onFallback = target.onFallback);
