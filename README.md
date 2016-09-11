@@ -9,8 +9,19 @@ If not installed the application, fallback (ex. app store, google play store etc
 | installed | open application |
 | not installed | fallback (ex. your store url) |
 
-### DEMO
+### Demo
 [demo page](https://satoshikawabata.github.io/fallback-custom-scheme/)
+
+## Install
+### npm
+```shell
+npm i fallback-custom-scheme
+```
+
+### download from url
+```
+https://satoshikawabata.github.io/fallback-custom-scheme/bundle.js
+```
 
 ## Usage
 
@@ -23,8 +34,8 @@ var fcs = new window.FallbackCustomScheme({
   browserback: 'back', // handling on return browser
   onBrowserback: function(){}, // browser back handler
   query: { // query
-    a:aaa,
-    b=bbb
+    a: aaa,
+    b: bbb
   }
 });
 ```
